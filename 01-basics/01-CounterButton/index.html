@@ -1,13 +1,21 @@
 <!doctype html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <title>CounterButton</title>
 </head>
+
 <body>
-
-<!-- Решение -->
-
-<script type="module" src="script.js"></script>
+  <div id="app">
+    <div class="button-handler">
+      <button
+        class="button-handler__button button-handler__button-counter"
+        v-on:click="counterUpper(1)"
+      >{{ stat.counter }}
+      </button>
+    </div>
+  </div>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
