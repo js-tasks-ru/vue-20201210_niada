@@ -1,9 +1,7 @@
 import Vue from './vue.esm.browser.js';
 
-/** URL адрес API */
+/** ENV */
 const API_URL = 'https://course-vue.javascript.ru/api';
-const ICON_URL = '/assets/icons/';
-const BACKGROUND_IMAGE_DEFAULTL = 'linear-gradient(40deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), var(--bg-url)';
 
 /** ID митапа для примера; используйте его при получении митапа */
 const MEETUP_ID = 6;
@@ -38,6 +36,18 @@ const agendaItemIcons = {
 };
 
 /**
+ *
+ * @param date -
+ * @return {string} -
+ */
+function getDateOnlyString(date) {
+  const YYYY = date.getUTCFullYear();
+  const MM = (date.getUTCMonth() + 1).toString().padStart(2, '0');
+  const DD = date.getUTCDate().toString().padStart(2, '0');
+  return `${YYYY}-${MM}-${DD}`;
+}
+
+/**
  * Возвращает ссылку на митап
  * @param meetupId -
  * @return {object} -
@@ -53,77 +63,57 @@ function getMeetupInfoLink(meetupId) {
  */
 function getMeetupCoverLink(meetup) {
   if (!meetup.imageId) {
-    return BACKGROUND_IMAGE_DEFAULTL;
+    return;
   }
 
-  return `url(${API_URL}/images/${meetup.imageId}),${BACKGROUND_IMAGE_DEFAULTL}`;
-}
-
-/**
- *
- * @param iconType -
- * @return {string} -
- */
-function getIconLink(iconType) {
-  return `${ICON_URL}icon-${agendaItemIcons[iconType]}.svg`;
-}
-
-/**
- *
- * @param date -
- * @return {string} -
- */
-function getLocalDate(date) {
-  return new Date(date).toDateString().slice(3).trim();
-}
-
-/**
- *
- * @param obj -
- * @return {string} -
- */
-function normalizeAgendaTitle(obj) {
-  if (!obj.title) {
-    obj.title = agendaItemTitles[obj.type];
-  }
+  return `url(${API_URL}/images/${meetup.imageId})`;
 }
 
 export const app = new Vue({
   el: '#app',
 
-  data: {
-    meetups: [],
-    styles: {
-      backgroundImage: [],
-      backgroundImageDefault: BACKGROUND_IMAGE_DEFAULTL,
-    },
+  data() {
+    return {
+      meetup: {},
+    };
   },
 
-  mounted() {
-    this.setMeetupInfo();
+  async mounted() {
+    this.meetup = await this.getMeetupInfo(MEETUP_ID);
   },
 
   computed: {
-    //
+    meetupImageLink: function () {
+      return getMeetupCoverLink(this.meetup);
+    },
+    meetupDate: function () {
+      return new Date(this.meetup.date);
+    },
+    meetupLocalDate: function () {
+      return new Date(this.meetupDate).toLocaleString(navigator.language, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+    },
+    agendaEventsCounter: function () {
+      return this.meetup.agenda.length;
+    },
+    agendaIcons: function () {
+      return agendaItemIcons;
+    },
+    agendaDefaultTitles: function () {
+      return agendaItemTitles;
+    },
+    dateOnlyString: function () {
+      return getDateOnlyString(new Date(this.meetupDate));
+    },
   },
 
   methods: {
-    setMeetupInfo() {
-      fetch(getMeetupInfoLink(MEETUP_ID))
-        .then((stream) => stream.json())
-        .then((meetup) => {
-          meetup.imageLink = getMeetupCoverLink(meetup);
-          meetup.date = getLocalDate(meetup.date);
-          meetup.agenda.forEach((agenda) => {
-            agenda.iconLink = getIconLink(agenda.type);
-            normalizeAgendaTitle(agenda);
-          });
-
-          return meetup;
-        })
-        .then((fullMeetupInfo) => {
-          this.meetups.push(fullMeetupInfo);
-        })
+    async getMeetupInfo(id) {
+      return fetch(getMeetupInfoLink(id))
+        .then((res) => res.json())
         .catch((error) => {
           console.error(error);
         });
