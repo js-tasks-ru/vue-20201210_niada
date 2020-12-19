@@ -61,12 +61,12 @@ function getMeetupInfoLink(meetupId) {
  * @param meetup - объект с описанием митапа (и параметром meetupId)
  * @return {string} - ссылка на изображение митапа
  */
-function getMeetupCoverLink(meetup) {
-  if (!meetup.imageId) {
+function getMeetupCoverLink(imageId) {
+  if (imageId) {
     return;
   }
 
-  return `url(${API_URL}/images/${meetup.imageId})`;
+  return `url(${API_URL}/images/${imageId})`;
 }
 
 export const app = new Vue({
@@ -74,7 +74,7 @@ export const app = new Vue({
 
   data() {
     return {
-      meetup: {},
+      meetup: null,
     };
   },
 
@@ -84,9 +84,16 @@ export const app = new Vue({
 
   computed: {
     meetupImageLink: function () {
-      return getMeetupCoverLink(this.meetup);
+      if (!this.meetup.imageId) {
+        return;
+      }
+
+      return getMeetupCoverLink(this.meetup.imageId);
     },
     meetupDate: function () {
+      if (!this.meetup && this.meetup.date) {
+        return;
+      }
       return new Date(this.meetup.date);
     },
     meetupLocalDate: function () {
@@ -97,15 +104,27 @@ export const app = new Vue({
       });
     },
     agendaEventsCounter: function () {
+      if (!this.meetup && this.meetup.agenda) {
+        return;
+      }
       return this.meetup.agenda.length;
     },
     agendaIcons: function () {
+      if (!this.meetup && this.meetup.agenda) {
+        return;
+      }
       return agendaItemIcons;
     },
     agendaDefaultTitles: function () {
+      if (!this.meetup && this.meetup.agenda) {
+        return;
+      }
       return agendaItemTitles;
     },
     dateOnlyString: function () {
+      if (!this.meetupDate) {
+        return;
+      }
       return getDateOnlyString(new Date(this.meetupDate));
     },
   },
