@@ -14,6 +14,18 @@ export function getMeetupCoverLink(meetup) {
 }
 
 /**
+ *
+ * @param date -
+ * @return {string} -
+ */
+export function getDateOnlyString(date) {
+  const YYYY = date.getUTCFullYear();
+  const MM = (date.getUTCMonth() + 1).toString().padStart(2, '0');
+  const DD = date.getUTCDate().toString().padStart(2, '0');
+  return `${YYYY}-${MM}-${DD}`;
+}
+
+/**
  * Получает данные митапа по его ID с API
  * @param {Number} id
  * @return {Promise}
