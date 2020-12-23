@@ -1,35 +1,65 @@
-<!doctype html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <title>CounterButtonComponent</title>
 </head>
 <body>
+  <style type="text/css">
+    .app__element-handler {
+      display: flex;
+      flex-direction: column;
 
-<div id="app">
-  <p><counter-button v-model="count1"></counter-button> - count = {{ count1 }}</p>
-  <p><counter-button v-model="count2"></counter-button> - count = {{ count2 }}</p>
-  <p><counter-button :count="count3" @increment="count3 = $event"></counter-button> - count = {{ count3 }}</p>
-</div>
+      margin: 12px;
+      padding: 12px;
+      max-width: 240px;
 
-<script type="module">
-  import Vue from './vue.esm.browser.js';
-  import { CounterButton } from './CounterButton.js';
+      outline: 1px solid darkcyan;
+      outline-offset: -1px;
+    }
 
-  const app = new Vue({
-    el: '#app',
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-    components: {
-      CounterButton,
-    },
+      min-width: 120px;
+      min-height: 48px;
 
-    data: {
-      count1: 15,
-      count2: undefined,
-      count3: 0,
-    },
-  });
-</script>
+      background-color: #221b1b;
+      color: thistle;
+    }
+  </style>
+
+  <div id="app">
+    <div class="app__element-handler">
+      <counter-button v-model="count1"></counter-button> - count = {{ count1 }}
+    </div>
+    <div class="app__element-handler">
+      <counter-button v-model="count2"></counter-button> - count = {{ count2 }}
+    </div>
+    <div class="app__element-handler">
+      <counter-button :count="count3" @increment="count3 = $event"></counter-button> - count = {{ count3 }}
+    </div>
+  </div>
+
+  <script type="module">
+    import Vue from './vue.esm.browser.js';
+    import { CounterButton } from './CounterButton.js';
+
+    const app = new Vue({
+      el: '#app',
+
+      components: {
+        CounterButton,
+      },
+
+      data: {
+        count1: 15,
+        count2: undefined,
+        count3: 0,
+      },
+    });
+  </script>
 
 </body>
 </html>
