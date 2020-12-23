@@ -14,30 +14,31 @@
   </style>
   <title>MeetupsCalendar</title>
 </head>
+
 <body>
-<div id="app" class="container">
-  <meetups-calendar v-if="meetups" :meetups="meetups"></meetups-calendar>
-</div>
+  <div id="app" class="container">
+    <meetups-calendar v-if="meetups" :meetups="meetups"></meetups-calendar>
+  </div>
 
-<script type="module">
-  import Vue from './vue.esm.browser.js';
-  import { MeetupsCalendar } from './MeetupsCalendar.js';
+  <script type="module">
+    import Vue from './vue.esm.browser.js';
+    import { MeetupsCalendar } from './MeetupsCalendar.js';
 
-  const app = new Vue({
-    el: '#app',
+    const app = new Vue({
+      el: '#app',
 
-    components: {
-      MeetupsCalendar,
-    },
+      components: {
+        MeetupsCalendar,
+      },
 
-    data: {
-      meetups: null,
-    },
+      data: {
+        meetups: null,
+      },
 
-    async mounted() {
-      this.meetups = await fetch(`https://course-vue.javascript.ru/api/meetups`).then((res) => res.json());
-    }
-  });
-</script>
+      async mounted() {
+        this.meetups = await fetch(`https://course-vue.javascript.ru/api/meetups`).then((res) => res.json());
+      }
+    });
+  </script>
 </body>
 </html>
