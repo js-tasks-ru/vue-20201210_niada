@@ -1,20 +1,38 @@
 export const MeetupInfo = {
-  template: `<ul class="info-list">
+  template: `
+    <ul class="info-list">
       <li>
         <img class="icon info-list__icon" alt="icon" src="/assets/icons/icon-user.svg" />
-        Организатор
+        {{ organizer }}
       </li>
       <li>
         <img class="icon info-list__icon" alt="icon" src="/assets/icons/icon-map.svg" />
-        Место
+        {{ place }}
       </li>
       <li>
         <img class="icon info-list__icon" alt="icon" src="/assets/icons/icon-cal-lg.svg" />
-        <time datetime="2020-01-01">1 янв. 2020</time>
+        <time :datetime="datetime">{{ date }}</time>
       </li>
     </ul>`,
 
-  // props
+  props: {
+    organizer: {
+      type: String,
+      default: '',
+    },
+    place: {
+      type: String,
+      default: '',
+    },
+    datetime: {
+      type: String,
+      default: '',
+    },
+    date: {
+      type: String,
+      default: '',
+    },
+  },
 
   // computed
 };

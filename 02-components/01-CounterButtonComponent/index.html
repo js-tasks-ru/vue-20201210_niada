@@ -5,11 +5,42 @@
   <title>CounterButtonComponent</title>
 </head>
 <body>
+  <style type="text/css">
+    .app__element-handler {
+      display: flex;
+      flex-direction: column;
+
+      margin: 12px;
+      padding: 12px;
+      max-width: 240px;
+
+      outline: 1px solid darkcyan;
+      outline-offset: -1px;
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      min-width: 120px;
+      min-height: 48px;
+
+      background-color: #221b1b;
+      color: thistle;
+    }
+  </style>
 
 <div id="app">
-  <p><counter-button v-model="count1"></counter-button> - count = {{ count1 }}</p>
-  <p><counter-button v-model="count2"></counter-button> - count = {{ count2 }}</p>
-  <p><counter-button :count="count3" @increment="count3 = $event"></counter-button> - count = {{ count3 }}</p>
+  <div class="app__element-handler">
+    <counter-button v-model="count1"></counter-button> - count = {{ count1 }}
+  </div>
+  <div class="app__element-handler">
+    <counter-button v-model="count2"></counter-button> - count = {{ count2 }}
+  </div>
+  <div class="app__element-handler">
+    <counter-button :count="count3" @increment="count3 = $event"></counter-button> - count = {{ count3 }}
+  </div>
 </div>
 
 <script type="module">
