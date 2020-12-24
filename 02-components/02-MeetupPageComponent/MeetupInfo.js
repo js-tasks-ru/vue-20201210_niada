@@ -11,7 +11,7 @@ export const MeetupInfo = {
       </li>
       <li>
         <img class="icon info-list__icon" alt="icon" src="/assets/icons/icon-cal-lg.svg" />
-        <time :datetime="datetime">{{ date }}</time>
+        <time :datetime="date">{{ meetupLocalDateFormatter }}</time>
       </li>
     </ul>`,
 
@@ -28,11 +28,17 @@ export const MeetupInfo = {
       type: Date,
       required: true,
     },
-    datetime: {
-      type: String,
-      default: '',
-    },
   },
 
-  // computed
+  computed: {
+    meetupLocalDateFormatter() {
+      const locale = navigator.language;
+      const formatter = new Intl.DateTimeFormat(locale, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+      return formatter.format(this.date);
+    },
+  },
 };

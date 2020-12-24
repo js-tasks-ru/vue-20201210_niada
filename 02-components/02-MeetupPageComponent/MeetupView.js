@@ -38,8 +38,7 @@ export const MeetupView = {
             <meetup-info
               :organizer="meetup.organizer"
               :place="meetup.place"
-              :datetime="dateOnlyString"
-              :date="meetupLocalDate"
+              :date="date"
             ></meetup-info>
           </div>
         </div>
@@ -57,7 +56,6 @@ export const MeetupView = {
     meetup: {
       type: Object,
       required: true,
-      default: {},
     },
   },
 
@@ -68,24 +66,8 @@ export const MeetupView = {
       }
       return getMeetupCoverLink(this.meetup);
     },
-    meetupDate: function () {
-      if (!this.meetup && this.meetup.date) {
-        return;
-      }
+    date() {
       return new Date(this.meetup.date);
-    },
-    meetupLocalDate: function () {
-      return new Date(this.meetupDate).toLocaleString(navigator.language, {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      });
-    },
-    dateOnlyString: function () {
-      if (!this.meetupDate) {
-        return;
-      }
-      return getDateOnlyString(new Date(this.meetupDate));
     },
   },
 };
