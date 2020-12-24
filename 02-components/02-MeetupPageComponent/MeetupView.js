@@ -56,6 +56,7 @@ export const MeetupView = {
   props: {
     meetup: {
       type: Object,
+      required: true,
       default: {},
     },
   },

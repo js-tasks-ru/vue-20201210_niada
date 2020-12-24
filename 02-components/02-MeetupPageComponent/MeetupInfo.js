@@ -18,10 +18,12 @@ export const MeetupInfo = {
   props: {
     organizer: {
       type: String,
+      required: true,
       default: '',
     },
     place: {
       type: String,
+      required: true,
       default: '',
     },
     datetime: {
@@ -29,7 +31,7 @@ export const MeetupInfo = {
       default: '',
     },
     date: {
-      type: String,
+      required: true,
       default: '',
     },
   },

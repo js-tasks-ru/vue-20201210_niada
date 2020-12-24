@@ -11,9 +11,9 @@ export const MeetupAgenda = {
     >Программа пока пуста, но когда-нибудь в ней обязательно что-нибудь появится!</p
     >
       <meetup-agenda-item
-        v-for="agendaEvent in agenda"
-        :key="agendaEvent.id"
-        :agendaEvent="agendaEvent"
+        v-for="agendaItem in agenda"
+        :key="agendaItem.id"
+        :agendaItem="agendaItem"
       ></meetup-agenda-item>
     </div>`,
 
