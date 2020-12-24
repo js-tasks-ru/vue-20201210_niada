@@ -6,17 +6,17 @@ export const MeetupAgendaItem = {
       <div class="meetup-agenda__item-col">
         <img class="icon" alt="icon" :src="agendaIcon" />
       </div>
-      <div class="meetup-agenda__item-col">{{ agendaEvent.startsAt }} - {{ agendaEvent.endsAt }}</div>
+      <div class="meetup-agenda__item-col">{{ agendaItem.startsAt }} - {{ agendaItem.endsAt }}</div>
       <div class="meetup-agenda__item-col">
-        <h5 class="meetup-agenda__title">{{agendaEvent.title || agendaDefaultTitles[agendaEvent.type]}}</h5>
+        <h5 class="meetup-agenda__title">{{agendaItem.title || agendaDefaultTitles[agendaItem.type]}}</h5>
 
-        <p v-if="agendaEvent.speaker">
-          <span>{{ agendaEvent.speaker }}</span>
+        <p v-if="agendaItem.speaker">
+          <span>{{ agendaItem.speaker }}</span>
           <span class="meetup-agenda__dot"></span>
-          <span class="meetup-agenda__lang">{{ agendaEvent.language }}</span>
+          <span class="meetup-agenda__lang">{{ agendaItem.language }}</span>
         </p>
 
-        <p v-if="agendaEvent.description">{{ agendaEvent.description }}</p>
+        <p v-if="agendaItem.description">{{ agendaItem.description }}</p>
       </div>
     </div>`,
 
@@ -29,16 +29,16 @@ export const MeetupAgendaItem = {
 
   computed: {
     agendaDefaultTitles: function () {
-      if (!this.agendaEvent) {
+      if (!this.agendaItem) {
         return;
       }
       return agendaItemTitles;
     },
     agendaIcon() {
-      if (!this.agendaEvent) {
+      if (!this.agendaItem) {
         return;
       }
-      return `/assets/icons/icon-${agendaItemIcons[this.agendaEvent.type]}.svg`;
+      return `/assets/icons/icon-${agendaItemIcons[this.agendaItem.type]}.svg`;
     },
   },
 };
