@@ -24,7 +24,6 @@ export const MeetupAgendaItem = {
     agendaItem: {
       type: Object,
       required: true,
-      default: null,
     },
   },
 

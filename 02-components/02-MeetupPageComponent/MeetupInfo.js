@@ -19,19 +19,17 @@ export const MeetupInfo = {
     organizer: {
       type: String,
       required: true,
-      default: '',
     },
     place: {
       type: String,
       required: true,
-      default: '',
+    },
+    date: {
+      type: Date,
+      required: true,
     },
     datetime: {
       type: String,
-      default: '',
-    },
-    date: {
-      required: true,
       default: '',
     },
   },
