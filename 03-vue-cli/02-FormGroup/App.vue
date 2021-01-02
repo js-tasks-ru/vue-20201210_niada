@@ -22,6 +22,7 @@
           <input class="form-control" placeholder="Inline" />
         </div>
       </form-group>
+
       <form-group inline>
         <div class="input-group">
           <input class="form-control" placeholder="Inline" />
@@ -42,7 +43,6 @@ export default {
   data() {
     return {};
   },
-
   methods: {
     success() {
       this.$refs.toaster.success('Success ' + new Date().toTimeString());
@@ -58,6 +58,10 @@ export default {
 p,
 hr {
   margin: 1rem auto;
+}
+
+.input-group .form-control {
+  width: 100%;
 }
 
 .form-control {
@@ -83,9 +87,5 @@ hr {
 
 .form-control:focus {
   border-color: var(--blue);
-}
-
-.input-group .form-control {
-  width: 100%;
 }
 </style>
