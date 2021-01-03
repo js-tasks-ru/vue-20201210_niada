@@ -76,7 +76,9 @@ const agendaItemTypes = [
 
 export default {
   name: 'App',
+
   components: { DropdownButton },
+
   data() {
     return {
       agendaItemTypes: agendaItemTypes,
