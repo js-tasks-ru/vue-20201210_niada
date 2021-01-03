@@ -10,13 +10,13 @@
 export default {
   name: 'FormGroup',
   props: {
-    label: {
-      type: String,
-      required: false,
-    },
     inline: {
       type: Boolean,
       default: false,
+    },
+    label: {
+      type: String,
+      required: false,
     },
   },
 };
