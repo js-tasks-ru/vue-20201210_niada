@@ -1,6 +1,7 @@
 <template>
   <div id="app" class="page container">
     <app-toast ref="toaster" />
+
     <p>
       <button @click="success">Add Success Message</button>
       <button @click="error">Add Error Message</button>
