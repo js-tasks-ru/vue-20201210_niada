@@ -1,16 +1,36 @@
 <template>
   <div class="content-tabs">
     <div class="content-tabs__nav">
-      <a href="#" class="content-tabs__tab">Page A</a>
-      <a href="#" class="content-tabs__tab">Page B</a>
+      <router-link
+        v-for="(tab, index) in tabs"
+        :to="tab.to"
+        :key="index"
+        :exact-active-class="'content-tabs__tab_active'"
+        class="content-tabs__tab"
+      >
+        {{ tab.text }}</router-link
+      >
+      <!-- https://router.vuejs.org/ru/api/#active-class -->
+      <!-- <a href="#" class="content-tabs__tab">Page A</a> -->
+      <!-- <a href="#" class="content-tabs__tab">Page B</a> -->
     </div>
-    <div class="content-tabs__content">Content</div>
+    <div class="content-tabs__content">
+      <slot />
+    </div>
+    <section>{{ tabs }}</section>
   </div>
 </template>
 
 <script>
 export default {
   name: 'ContentTabs',
+
+  props: {
+    tabs: {
+      type: Array,
+      required: true,
+    },
+  },
 };
 </script>
 
