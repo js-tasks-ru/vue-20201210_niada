@@ -1,7 +1,7 @@
 <template>
   <div class="page page_onboarding">
     <div class="container">
-      <h1 class="page__title text-center">Вход</h1>
+      <h1 class="page__title text-center">{{ title }}</h1>
       <form class="form">
         <div class="form-group">
           <label class="form-label">Email</label>
@@ -37,6 +37,13 @@
 // https://github.com/js-tasks-ru/vue-course-materials/blob/master/meetups-markup/login.html
 export default {
   name: 'AuthLayout',
+
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+  },
 };
 </script>
 

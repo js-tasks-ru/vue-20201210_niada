@@ -1,7 +1,7 @@
 <template>
   <div class="page page_meetup-forms">
     <div class="container">
-      <h2 class="page__title">Редактирование митапа</h2>
+      <h2 class="page__title">{{ title }}</h2>
       <form class="form meetup-form">
         <div class="meetup-form__content">
           <fieldset class="form-section">
@@ -592,6 +592,13 @@
 //https://github.com/js-tasks-ru/vue-course-materials/blob/master/meetups-markup/meetup-form.html
 export default {
   name: 'FormLayout',
+
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+  },
 };
 </script>
 
