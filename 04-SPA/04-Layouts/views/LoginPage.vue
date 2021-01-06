@@ -6,8 +6,10 @@
 
 <script>
 import AuthLayout from '../components/AuthLayout';
+
 export default {
   name: 'LoginPage',
+
   components: { AuthLayout },
 };
 </script>
