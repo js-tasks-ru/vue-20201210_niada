@@ -6,19 +6,19 @@
       :participation.sync="participation"
       :search.sync="search"
     />
-    <!-- <section><div>
-    {{this}}
-    <br>
-    {{ this.$route.query || 'query No' }}
-    <br>
-    {{ this.$route.query.view || 'view No'}}
-    <br>
-    {{ this.$route.query.date || 'date No' }}
-    <br>
-    {{ this.$route.query.participation || 'participation No' }}
-    <br>
-    {{ this.$route.query.search || 'search No' }}
-    </div></section> -->
+    <!-- <div>
+      {{this}}
+      <br>
+      {{ this.$route.query || 'query No' }}
+      <br>
+      {{ this.$route.query.view || 'view No'}}
+      <br>
+      {{ this.$route.query.date || 'date No' }}
+      <br>
+      {{ this.$route.query.participation || 'participation No' }}
+      <br>
+      {{ this.$route.query.search || 'search No' }}
+    </div> -->
   </div>
 </template>
 
@@ -42,15 +42,24 @@ export default {
 
   computed: {
     queryParams() {
-      return {
-        view: this.view || 'list',
-        date: this.date || 'all',
-        participation: this.participation || 'all',
-        search: this.search || '',
-      };
+      let params = {};
+
+      if (this.view !== 'list') {
+        params.view = this.view;
+      }
+      if (this.date !== 'all') {
+        params.date = this.date;
+      }
+      if (this.participation !== 'all') {
+        params.participation = this.participation;
+      }
+      if (this.search !== '') {
+        params.search = this.search;
+      }
+      return params;
     },
   },
-
+  // https://router.vuejs.org/guide/essentials/navigation.html#programmatic-navigation
   watch: {
     queryParams(query) {
       this.$router.push({ query }).catch(() => {});
