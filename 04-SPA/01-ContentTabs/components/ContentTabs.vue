@@ -5,7 +5,7 @@
         v-for="(tab, index) in tabs"
         :to="tab.to"
         :key="index"
-        :exact-active-class="'content-tabs__tab_active'"
+        exact-active-class="content-tabs__tab_active"
         class="content-tabs__tab"
       >
         {{ tab.text }}</router-link

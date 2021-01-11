@@ -2,33 +2,7 @@
   <div class="page page_onboarding">
     <div class="container">
       <h1 class="page__title text-center">{{ title }}</h1>
-      <form class="form">
-        <div class="form-group">
-          <label class="form-label">Email</label>
-          <div class="input-group">
-            <input type="email" placeholder="demo@email" class="form-control" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Пароль</label>
-          <div class="input-group">
-            <input
-              type="password"
-              placeholder="password"
-              class="form-control"
-            />
-          </div>
-        </div>
-        <div class="form__buttons">
-          <button type="submit" class="button button_primary button_block">
-            Войти
-          </button>
-        </div>
-        <div class="form__append">
-          Нет аккаунта?
-          <a href="register.html" class="link">Зарегистрируйтесь</a>
-        </div>
-      </form>
+      Auth Page
     </div>
   </div>
 </template>
@@ -47,4 +21,23 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.page {
+  padding: 48px 0;
+}
+
+.page__title {
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 37px;
+  color: var(--body-color);
+  margin: 0 0 32px;
+}
+
+.page.page_onboarding {
+  max-width: 374px;
+  width: 100%;
+  margin: 0 auto;
+}
+</style>
