@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="wrapper bg-grey">
     <the-header></the-header>
 
-    <main>
+    <main class="main">
       <router-view />
     </main>
 
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+// https://github.com/js-tasks-ru/vue-course-materials/blob/master/meetups-markup/index.html
 import TheHeader from '../components/TheHeader';
 import TheFooter from '../components/TheFooter';
 

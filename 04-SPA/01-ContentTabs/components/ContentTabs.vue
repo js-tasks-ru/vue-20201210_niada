@@ -17,7 +17,6 @@
     <div class="content-tabs__content">
       <slot />
     </div>
-    <section>{{ tabs }}</section>
   </div>
 </template>
 

@@ -6,6 +6,7 @@
       <router-link :to="{ name: 'form' }">Создать митап</router-link> |
       <router-link :to="{ name: 'meetups' }">Митапы</router-link>
     </nav>
+
     <base-layout>
       <router-view />
     </base-layout>
