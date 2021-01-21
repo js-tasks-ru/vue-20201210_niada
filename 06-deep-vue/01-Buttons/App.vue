@@ -27,7 +27,9 @@
       <secondary-button block>Secondary Block</secondary-button>
     </p>
     <p>
-      <secondary-button tag="a" href="#">Secondary Button Link</secondary-button>
+      <secondary-button tag="a" href="#"
+        >Secondary Button Link</secondary-button
+      >
     </p>
     <hr />
     <p>
@@ -53,7 +55,9 @@ import DangerButton from './components/DangerButton';
 
 export default {
   name: 'App',
+
   components: { BaseButton, SecondaryButton, PrimaryButton, DangerButton },
+
   methods: {
     clicked() {
       alert('Clicked');
