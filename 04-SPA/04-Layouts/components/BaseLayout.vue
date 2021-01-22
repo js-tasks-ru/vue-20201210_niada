@@ -1,8 +1,24 @@
-<template></template>
+<template>
+  <div class="wrapper bg-grey">
+    <the-header></the-header>
+
+    <main class="main">
+      <slot />
+    </main>
+
+    <the-footer></the-footer>
+  </div>
+</template>
 
 <script>
+// https://github.com/js-tasks-ru/vue-course-materials/blob/master/meetups-markup/index.html
+import TheHeader from '../components/TheHeader';
+import TheFooter from '../components/TheFooter';
+
 export default {
   name: 'BaseLayout',
+
+  components: { TheHeader, TheFooter },
 };
 </script>
 

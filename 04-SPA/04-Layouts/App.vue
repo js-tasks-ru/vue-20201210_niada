@@ -1,10 +1,12 @@
 <template>
   <div id="app">
     <nav>
-      <router-link :to="{ name: 'meetups' }">Митапы</router-link> |
+      <router-link :to="{ name: 'login' }">Вход</router-link> |
+      <!-- <a href="register.html">Регистрация</a> | -->
       <router-link :to="{ name: 'form' }">Создать митап</router-link> |
-      <router-link :to="{ name: 'login' }">Вход</router-link>
+      <router-link :to="{ name: 'meetups' }">Митапы</router-link>
     </nav>
+
     <base-layout>
       <router-view />
     </base-layout>

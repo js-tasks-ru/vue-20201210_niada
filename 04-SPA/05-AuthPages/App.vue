@@ -9,13 +9,19 @@
         </ul>
       </nav>
     </header>
-    <main class="page page_onboarding"><router-view /></main>
+
+    <main class="page page_onboarding">
+      <router-view />
+    </main>
   </div>
 </template>
 
 <script>
 export default {
   name: 'App',
+  created() {
+    this.$router.replace('/');
+  },
 };
 </script>
 

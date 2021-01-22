@@ -6,8 +6,10 @@
 
 <script>
 import FormLayout from '../components/FormLayout';
+
 export default {
   name: 'FormPage',
+
   components: { FormLayout },
 };
 </script>

@@ -3,8 +3,23 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
-export function scrollBehavior() {
-  // Место для решения
+// https://router.vuejs.org/guide/advanced/scroll-behavior.html
+export function scrollBehavior(to, from, savedPosition) {
+  if (savedPosition) {
+    return savedPosition; //при переходе назад с savedPosition не изменять положение прокрутки;
+  }
+
+  if (to.hash) {
+    return {
+      selector: to.hash, //при наличии hash в маршруте прокрутить к элементу с идентификатором в hash;
+    };
+  }
+
+  if (to.meta['saveScrollPosition'] && from.meta['saveScrollPosition']) {
+    return false;
+  }
+
+  return { x: 0, y: 0 }; //default по умолчанию страница прокручивается вверх;
 }
 
 export const router = new VueRouter({
