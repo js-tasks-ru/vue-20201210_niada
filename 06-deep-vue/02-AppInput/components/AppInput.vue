@@ -1,18 +1,89 @@
 <template>
   <div
-    class="input-group input-group_icon input-group_icon-left input-group_icon-right"
+    class="input-group"
+    :class="{
+      'input-group_icon': handlerLeftIcon || handlerRightIcon,
+      'input-group_icon-left': handlerLeftIcon,
+      'input-group_icon-right': handlerRightIcon,
+    }"
   >
-    <img class="icon" />
+    <slot name="left-icon"></slot>
 
-    <input class="form-control form-control_rounded form-control_sm" />
+    <component
+      class="form-control"
+      :class="{ 'form-control_sm': small, 'form-control_rounded': rounded }"
+      :is="!multiline ? 'input' : 'textarea'"
+      :value.prop="value"
+      v-bind="$attrs"
+      v-on="listeners"
+    />
 
-    <img class="icon" />
+    <slot name="right-icon"></slot>
   </div>
 </template>
 
 <script>
 export default {
   name: 'AppInput',
+
+  inheritAttrs: false,
+
+  props: {
+    small: {
+      type: Boolean,
+      default: false,
+    },
+    rounded: {
+      type: Boolean,
+      default: false,
+    },
+    multiline: {
+      type: Boolean,
+      default: false,
+    },
+    value: {
+      type: String,
+      default: '',
+    },
+  },
+
+  data() {
+    return {
+      handlerLeftIcon: false,
+      handlerRightIcon: false,
+    };
+  },
+
+  computed: {
+    listeners() {
+      return {
+        ...this.$listeners,
+        input: ($event) => this.$emit('input', $event.target.value),
+        change: ($event) => this.$emit('change', $event.target.value),
+      };
+    },
+  },
+
+  mounted() {
+    this.renderIcons();
+  },
+
+  updated() {
+    this.renderIcons();
+  },
+
+  model: {
+    prop: 'value',
+    event: 'input',
+  },
+
+  methods: {
+    renderIcons() {
+      console.log("🚀 ~ file: AppInput.vue ~ line 82 ~ renderIcons ~ renderIcons");
+      this.handlerLeftIcon = !!this.$slots['left-icon'];
+      this.handlerRightIcon = !!this.$slots['right-icon'];
+    },
+  },
 };
 </script>
 
@@ -20,24 +91,25 @@ export default {
 .form-control {
   padding: 12px 16px;
   height: 52px;
-  border-radius: 8px;
   border: 2px solid var(--blue-light);
-  font-family: 'Nunito', sans-serif;
+
+  font-family: 'Nunito', 'Arial', sans-serif;
   font-weight: 600;
   font-size: 20px;
   line-height: 28px;
   color: var(--body-color);
-  transition: 0.2s all;
+
+  border-radius: 8px;
   background-color: var(--white);
   outline: none;
   box-shadow: none;
+  transition: 0.2s all;
 }
 
 .form-control::placeholder {
   font-weight: 400;
   color: var(--blue-2);
 }
-
 .form-control:focus {
   border-color: var(--blue);
 }
@@ -58,6 +130,7 @@ textarea.form-control {
 .form-control.form-control_sm {
   padding: 8px 16px;
   height: 44px;
+
   border-radius: 4px;
 }
 
@@ -76,6 +149,7 @@ textarea.form-control {
 .input-group.input-group_icon .icon {
   position: absolute;
   top: 50%;
+
   transform: translate(0, -50%);
 }
 
