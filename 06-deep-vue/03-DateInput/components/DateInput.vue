@@ -70,7 +70,9 @@ export default {
       if (this.type === 'date') {
         return this.dateValue;
       } else if (this.type === 'time') {
-        return (this.$attrs['step'] && this.$attrs['step'] % 60 !== 0) ? this.timeWithSecondsValue : this.timeValue;
+        return this.$attrs['step'] && this.$attrs['step'] % 60 !== 0
+          ? this.timeWithSecondsValue
+          : this.timeValue;
       } else if (this.type === 'datetime-local') {
         return `${this.dateValue}T${this.timeValue}`;
       }
@@ -80,6 +82,10 @@ export default {
 
   methods: {
     handleUpdate($event) {
+      // let dateValuec = this.date.toISOString().substring(0, 10);
+      // console.log("dateValuec", dateValuec);
+      // console.log("$event", $event);
+      // console.log("this.$listeners", this.$listeners);
       this.$emit('update:valueAsNumber', $event.target.valueAsNumber);
       this.$emit(
         'update:valueAsDate',
