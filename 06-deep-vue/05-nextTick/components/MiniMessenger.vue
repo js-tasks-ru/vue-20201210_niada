@@ -1,6 +1,6 @@
 <template>
   <main>
-    <messages-list class="messages" :messages="messages" />
+    <messages-list class="messages" :messages="messages" ref="list" />
     <form @submit.prevent="send" style="display: flex;">
       <input type="text" placeholder="New message" v-model="newMessage" />
       <button>Send</button>
@@ -10,14 +10,10 @@
 
 <script>
 import MessagesList from './MessegesList';
-
 let id = 0;
-
 export default {
   name: 'MiniMessenger',
-
   components: { MessagesList },
-
   data() {
     return {
       newMessage: '',
@@ -30,6 +26,11 @@ export default {
     };
   },
 
+  mounted() {
+    this.mesList = this.$refs['list'].$el;
+    console.log("🚀 ~ file: MiniMessenger.vue ~ line 31 ~ mounted ~ this.mesList", this.mesList);
+  },
+
   methods: {
     send() {
       this.messages.push({
@@ -37,6 +38,10 @@ export default {
         text: this.newMessage,
       });
       this.newMessage = '';
+
+      this.$nextTick(() => {
+        this.mesList.scrollTop = this.mesList.scrollHeight;
+      });
     },
   },
 };
@@ -44,19 +49,24 @@ export default {
 
 <style scoped>
 main {
-  font-family: sans-serif;
-  border: 1px solid #333;
   width: 200px;
+  border: 1px solid #333;
+
+  font-family: sans-serif;
+
   background-color: #efefef;
 }
+
 .messages {
   padding: 0 1rem;
   height: 300px;
+
   overflow: auto;
 }
+
 input {
+  flex: 1 1 100%;
   padding: 0.5rem;
   width: 100%;
-  flex: 1 1 100%;
 }
 </style>
