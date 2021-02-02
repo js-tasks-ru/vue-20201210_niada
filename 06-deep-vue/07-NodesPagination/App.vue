@@ -25,6 +25,7 @@ import NodesPagination from './components/NodesPagination';
 
 export default {
   name: 'App',
+
   components: { NodesPagination },
 
   data() {
