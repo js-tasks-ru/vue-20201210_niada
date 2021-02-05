@@ -2,7 +2,12 @@
   <div id="app">
     <button @click="updateList">Update list</button>
     <fade-transition-group tag="ul">
-      <li v-for="item in list" :key="item" :class="{ red: item > 0.5 }">
+      <li
+        v-for="item in list"
+        :key="item"
+        class="testui 1testui"
+        :class="{ red: item > 0.5 }"
+      >
         <div>{{ item }}</div>
       </li>
     </fade-transition-group>
