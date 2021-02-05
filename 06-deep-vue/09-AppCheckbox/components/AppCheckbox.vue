@@ -1,6 +1,12 @@
 <template>
   <label class="checkbox">
-    <input type="checkbox" />
+    <input
+      type="checkbox"
+      v-model="model"
+      v-bind="$attrs"
+      :value="value"
+      v-on="listeners"
+    />
     <slot />
     <span></span>
   </label>
@@ -9,6 +15,34 @@
 <script>
 export default {
   name: 'AppCheckbox',
+  inheritAttrs: false,
+
+  props: {
+    checked: [Array, Boolean],
+    value: {},
+  },
+
+  model: {
+    prop: 'checked',
+    event: 'change',
+  },
+
+  computed: {
+    model: {
+      get() {
+        return this.checked;
+      },
+      set(value) {
+        this.$emit('change', value);
+      },
+    },
+
+    listeners() {
+      const listeners = { ...this.$listeners };
+      delete listeners.change;
+      return listeners;
+    },
+  },
 };
 </script>
 
